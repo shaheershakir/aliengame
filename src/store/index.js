@@ -1,8 +1,14 @@
-import { createStore } from 'vuex'
+import { onUpdated } from "vue";
+import { createStore } from "vuex";
+import Vuex from "vuex";
 
-export default createStore({
+export default new Vuex.Store({
   state: {
-    UiState: "start",
+    uiState: "start",
+    characterChoices: ["baker", "mechanic", "artist"],
+    character: "",
+    questionIndex: 0,
+    score: 0,
     questions: [
       {
         question: `What's your dog's name?`,
@@ -43,7 +49,14 @@ export default createStore({
     ],
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    pickCharacter(state, character) {
+      state.character = character;
+    },
+    updateUIState(state, uistate) {
+      state.uiState = uistate;
+    },
+  },
   actions: {},
   modules: {},
 });
